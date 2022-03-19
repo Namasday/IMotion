@@ -40,3 +40,31 @@ def leg_to_ground(context):
         bone.location[1] -= high
     elif axis == "Z":
         bone.location[2] -= high
+
+def center_to_ground(context):
+    bone = context.active_pose_bone
+    em_l = context.scene.imotion.em_leftleg
+    em_r = context.scene.imotion.em_rightleg
+    axis = int(context.scene.imotion.control_axis_center)
+    charge = context.scene.imotion.charge_in
+    accuracy = 0.001
+
+    LEFT = 'el - em_l.matrix_world[2][3]'
+    RIGHT = 'er - em_r.matrix_world[2][3]'
+    ALL = 'eval(LEFT) + eval(RIGHT)'
+    charge = eval(charge)
+
+    while True:
+        el = em_l.matrix_world[2][3]
+        er = em_r.matrix_world[2][3]
+
+        bone.location[axis] = bone.location[axis] - accuracy
+        bpy.ops.object.mode_set(mode='OBJECT')                      #刷新约束创建的世界矩阵
+
+        if eval(charge) < accuracy * 0.01:
+            bone.location[axis] = bone.location[axis] + accuracy
+            break
+        else:
+            continue
+
+    bpy.ops.object.mode_set(mode='POSE')

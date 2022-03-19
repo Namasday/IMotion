@@ -30,3 +30,11 @@ class IMOTION_PT_View3D(bpy.types.Panel):
             row.prop(scn, 'key_start')
             row.prop(scn, 'key_end')
             col.operator("bm.ltgk",text="足鞋贴地插帧")
+
+        row = layout.row()
+        c=row.column()
+        c.prop(scn, 'em_leftleg', text="左脚空物体")
+        c.prop(scn, 'em_rightleg', text="右脚空物体")
+        c.row(heading="控制轴",align=True).prop(scn,'control_axis_center',expand=True)
+        c.row(heading="选择脚", align=True).prop(scn, 'charge_in', expand=True)
+        c.operator("bm.ctg", text="重心着地")

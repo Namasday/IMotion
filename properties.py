@@ -76,3 +76,37 @@ class IMProps(PropertyGroup):
         description="足骨贴地插帧的结束帧数",
         min = 0,
     )
+
+    em_leftleg: PointerProperty(
+        name="左脚空物体",
+        type=bpy.types.Object,
+        description="绑在左小腿末端的空物体，与ik同高",
+    )
+
+    em_rightleg: PointerProperty(
+        name="右脚空物体",
+        type=bpy.types.Object,
+        description="绑在右小腿末端的空物体，与ik同高",
+    )
+
+    control_axis_center: EnumProperty(
+        name="控制轴",
+        description="骨骼纵向移动的轴",
+        items=[
+            ('0', 'X', "", 0),
+            ('1', 'Y', "", 1),
+            ('2', 'Z', "", 2),
+        ],
+        default=2,
+    )
+
+    charge_in: EnumProperty(
+        name="控制轴",
+        description="骨骼纵向移动的轴",
+        items=[
+            ('LEFT', 'Left', "", 0),
+            ('RIGHT', 'Right', "", 1),
+            ('ALL', 'All', "", 2),
+        ],
+        default=2,
+    )

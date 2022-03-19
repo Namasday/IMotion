@@ -30,3 +30,12 @@ class BM_OT_LegToGroundKeys(Operator):
 
         bpy.context.scene.frame_current = origin
         return {"FINISHED"}
+
+@register_list
+class BM_OT_CenterToGround(Operator):
+    bl_idname = "bm.ctg"
+    bl_label = "重心贴地"
+
+    def execute(self,context):
+        func.center_to_ground(context)
+        return {"FINISHED"}
