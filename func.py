@@ -3,7 +3,7 @@ import bpy
 def leg_transform(context,obj):
     bpy.ops.object.select_all(action='DESELECT')
     context.view_layer.objects.active = obj
-    context.object.select = True
+    context.object.select_set(True)
     bpy.ops.object.duplicate_move()
     for mod in context.object.modifiers:
         bpy.ops.object.modifier_apply(modifier=mod.name)
