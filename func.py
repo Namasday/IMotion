@@ -16,6 +16,8 @@ def leg_transform(context,obj):
     bpy.ops.object.delete()
     return high
 
+
+"""脚着地"""
 def leg_to_ground(context):
     arm = context.object
     bone = context.active_pose_bone
@@ -41,6 +43,8 @@ def leg_to_ground(context):
     elif axis == "Z":
         bone.location[2] -= high
 
+
+"""重心着地"""
 def center_to_ground(context):
     bone = context.active_pose_bone
     em_l = context.scene.imotion.em_leftleg
